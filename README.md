@@ -157,3 +157,15 @@ This table shows all available configurations:
 | RETRY_STARTUP        | any        | ""            |
 | RETRY_SEND           | any        | ""            |
 | DECODE_JSON_LOGS     | bool       | true          |
+
+
+### Update fix lỗi lấy hostname
+1. Cài đặt ubuntu trên windown chạy được centos.
+2. Cập nhật file module.go ở repo https://github.com/gliderlabs/logspout
+   	_ "github.com/vutung189/logspout-logstash"
+3. 	docker build --no-cache --pull -t tungvt/logspout .
+4. 	save and deploy
+docker save tungvt/logspout > tungvt-logspout.tar
+docker load < tungvt-logspout.tar
+docker image tag tungvt/logspout:latest registry:5000/tungvt/logspout
+docker image push registry:5000/tungvt/logspout:latest
