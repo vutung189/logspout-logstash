@@ -133,7 +133,10 @@ func IsDecodeJsonLogs(c *docker.Container, a *LogstashAdapter) bool {
 // using the hostname assigned to the container (typically container ID).
 func GetContainerHostname(c *docker.Container) string {
 	content, err := ioutil.ReadFile("/etc/host_hostname")
+	log.Println("tungvt content:", content)
+	log.Println("tungvt err:", err)
 	if err == nil && len(content) > 0 {
+		log.Println("tungvt replace:", strings.TrimRight(string(content), "\r\n"))
 		return strings.Trim(string(content), "\r\n")
 	}
 
